@@ -1,0 +1,9 @@
+@layer reset, main;
+
+@import url("noicss.reset") layer(reset);
+
+@layer main {
+  :root {
+    --accentColor: #ff0000;
+  }
+}
