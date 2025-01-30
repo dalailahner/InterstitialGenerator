@@ -1,9 +1,205 @@
-@layer reset, main;
+@layer reset, toggle, main;
 
 @import url("noicss.reset") layer(reset);
+@import url("noicss.toggle") layer(toggle);
 
 @layer main {
   :root {
-    --accentColor: #ff0000;
+    scrollbar-gutter: stable both-edges;
+    --accentColor: #d12800;
+    --textColor: #f5f5f5;
+    --bgColor: #232323;
+    --infinity: calc(infinity * 1px);
+
+    --noicssToggleWidth: 2.5rem;
+    --noicssToggleHeight: 1.5rem;
+  }
+
+  body {
+    font-family: Inter, "Gill Sans", "Gill Sans MT", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: var(--bgColor);
+  }
+
+  .btn {
+    padding: 0.5em 1em;
+    color: var(--textColor);
+  }
+
+  main {
+    padding: 0 1rem;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 8rem auto auto 5rem;
+    grid-template-areas:
+      "headline"
+      "input"
+      "output"
+      ".";
+    gap: 5rem;
+    place-items: start center;
+
+    @media screen and (width > 768px) {
+      grid-template-columns: 3fr 2fr;
+      grid-template-rows: 8rem auto 5rem;
+      grid-template-areas:
+        "headline ."
+        "input output"
+        ". .";
+      gap: 0;
+    }
+  }
+
+  .pageHeadline {
+    grid-area: headline;
+    place-self: center;
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .inputSection {
+    grid-area: input;
+  }
+
+  form,
+  .advancedCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* TODO: find better solution and delete: */
+  input {
+    width: 300px;
+  }
+
+  .adVariantPicker {
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
+
+  input[name="adVariant"] {
+    display: none;
+
+    & + label {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      color: oklch(from var(--textColor) 80% c h);
+      font-size: 1rem;
+      font-weight: 700;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid var(--accentColor);
+      background-color: transparent;
+      transition: all 0.15s ease-out;
+
+      &:first-of-type {
+        border-right: none;
+        border-radius: var(--infinity) 0 0 var(--infinity);
+      }
+      &:last-of-type {
+        border-left: none;
+        border-radius: 0 var(--infinity) var(--infinity) 0;
+      }
+
+      &:is(:hover, :focus-visible) {
+        background-color: oklch(from var(--accentColor) 20% c h);
+      }
+    }
+
+    &:checked + label {
+      color: var(--textColor);
+      background-color: var(--accentColor);
+    }
+  }
+
+  .toggleCont {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5em;
+    place-items: center start;
+  }
+  .toggleLabel {
+    justify-self: end;
+  }
+
+  .advancedBtn {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    cursor: pointer;
+
+    & svg {
+      rotate: x 0;
+      transition: 0.25s ease-out;
+    }
+
+    &:has(+ .open) svg {
+      rotate: x 180deg;
+    }
+  }
+
+  .advancedCont {
+    height: 0;
+    overflow: hidden;
+    transition: all 0.25s ease-out;
+
+    &.open {
+      height: calc-size(auto, size);
+    }
+  }
+
+  /**********************************/
+  /* OUTPUT (RIGHT SIDE ON DESKTOP) */
+
+  .outputSection {
+    grid-area: output;
+  }
+
+  .outputBtnsCont {
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: center;
+    gap: 0.5em;
+  }
+
+  .updateNotification {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: green;
+    background-color: oklch(from currentColor 0.8 c h);
+  }
+
+  .copyOutputBtn {
+    font-size: 1rem;
+  }
+
+  .output {
+    padding: 1em;
+    width: 100%;
+    color: var(--textColor);
+    font-family: Hack, "Courier New", Courier, monospace;
+    font-size: 0.875rem;
+    background-color: oklch(from var(--bgColor) calc(l + 0.15) c h);
+    z-index: 1;
   }
 }
