@@ -13,48 +13,70 @@
       <section class="inputSection">
         <form>
           <div class="adVariantPicker">
+            <!-- prettier-ignore -->
+            <label class="btn adVariantLabel" for="adVariantImg">IMG<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Zm140-360q25 0 42.5-17.5T400-620q0-25-17.5-42.5T340-680q-25 0-42.5 17.5T280-620q0 25 17.5 42.5T340-560Z"/></svg></label>
             <input type="radio" id="adVariantImg" name="adVariant" value="adVariantImg" checked />
             <!-- prettier-ignore -->
-            <label class="btn" for="adVariantImg">IMG <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Zm140-360q25 0 42.5-17.5T400-620q0-25-17.5-42.5T340-680q-25 0-42.5 17.5T280-620q0 25 17.5 42.5T340-560Z"/></svg></label>
+            <label class="btn adVariantLabel" for="adVariantHTML">HTML<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M336-240 96-480l240-240 51 51-189 189 189 189-51 51Zm288 0-51-51 189-189-189-189 51-51 240 240-240 240Z"/></svg></label>
             <input type="radio" id="adVariantHTML" name="adVariant" value="adVariantHTML" />
-            <!-- prettier-ignore -->
-            <label class="btn" for="adVariantHTML">HTML <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M336-240 96-480l240-240 51 51-189 189 189 189-51 51Zm288 0-51-51 189-189-189-189 51-51 240 240-240 240Z"/></svg></label>
           </div>
-          <label for="imgUpload">Bild hochladen</label>
+          <hr class="trenner" />
+          <!-- prettier-ignore -->
+          <label class="btn fileUploadLabel" for="imgUpload">Bild hochladen<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg></label>
           <input type="file" id="imgUpload" name="imgUpload" />
-          <label for="headline">Headline</label>
-          <input type="text" id="headline" name="headline" />
-          <label for="subline">Subline</label>
-          <input type="text" id="subline" name="subline" />
-          <label for="ctaText">CTA-Text</label>
-          <input type="text" id="ctaText" name="ctaText" />
+          <hr class="trenner dezent" />
+          <div class="textInputWithLabelCont">
+            <label for="headline">Headline</label>
+            <input type="text" id="headline" name="headline" />
+          </div>
+          <div class="textInputWithLabelCont">
+            <label for="subline">Subline</label>
+            <input type="text" id="subline" name="subline" />
+          </div>
+          <div class="textInputWithLabelCont">
+            <label for="ctaText">CTA-Text</label>
+            <input type="text" id="ctaText" name="ctaText" />
+          </div>
+          <hr class="trenner dezent" />
           <div class="toggleCont">
             <p class="toggleLabel">truecount</p>
             <label class="noicssToggle"><input type="checkbox" name="truecount" /></label>
           </div>
-          <button class="btn advancedBtn" type="button">
-            Advanced <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg>
-          </button>
+          <hr class="trenner" />
+          <!-- prettier-ignore -->
+          <button class="btn advancedBtn" type="button">Advanced<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></button>
           <div class="advancedCont">
+            <hr class="trenner dezent" />
             <div class="toggleCont">
-              <p class="toggleLabel">3D</p>
+              <p class="toggleLabel">3D Image</p>
               <label class="noicssToggle"><input type="checkbox" name="3D" checked /></label>
             </div>
-            <div><p>color picker from imgUpload here?</p></div>
-            <label for="accentColor">Accent Color</label>
-            <input type="color" id="accentColor" name="accentColor" />
-            <label for="textColor">Text Color</label>
-            <input type="color" id="textColor" name="textColor" />
-            <label for="bgColor">Background Color</label>
-            <input type="color" id="bgColor" name="bgColor" />
+            <hr class="trenner dezent" />
+            <div class="colorPickerGroup">
+              <img class="colorPickerImg" src="#" />
+              <div class="colorInputWithLabelCont">
+                <label for="accentColor">Accent Color</label>
+                <input type="color" id="accentColor" name="accentColor" />
+              </div>
+              <div class="colorInputWithLabelCont">
+                <label for="textColor">Text Color</label>
+                <input type="color" id="textColor" name="textColor" />
+              </div>
+              <div class="colorInputWithLabelCont">
+                <label for="bgColor">Background Color</label>
+                <input type="color" id="bgColor" name="bgColor" />
+              </div>
+            </div>
+            <hr class="trenner" />
           </div>
         </form>
       </section>
       <section class="outputSection">
         <div class="outputBtnsCont">
           <!-- prettier-ignore -->
+          <button class="btn copyOutputBtn" type="button">copy<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M360-240q-33 0-56.5-23.5T280-320v-480q0-33 23.5-56.5T360-880h360q33 0 56.5 23.5T800-800v480q0 33-23.5 56.5T720-240H360Zm0-80h360v-480H360v480ZM200-80q-33 0-56.5-23.5T120-160v-560h80v560h440v80H200Zm160-240v-480 480Z"/></svg></button>
+          <!-- prettier-ignore -->
           <p class="btn updateNotification">updated<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 -960 960 960"><path d="M382-240 154-468l57-57 171 171 367-367 57 57-424 424Z"/></svg></p>
-          <button class="btn copyOutputBtn" type="button">copy</button>
         </div>
         <code class="output">code block</code>
       </section>

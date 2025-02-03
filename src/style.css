@@ -9,10 +9,19 @@
     --accentColor: #d12800;
     --textColor: #f5f5f5;
     --bgColor: #232323;
+    --hoverColor: oklch(from var(--bgColor) calc(l - 0.1) c h);
     --infinity: calc(infinity * 1px);
+    --formGap: 2rem;
+    --inputWidth: max(50%, 300px);
 
     --noicssToggleWidth: 2.5rem;
     --noicssToggleHeight: 1.5rem;
+    --noicssToggleOutline: var(--accentColor);
+  }
+
+  * {
+    outline-width: medium;
+    outline-offset: 4px;
   }
 
   body {
@@ -22,7 +31,9 @@
 
   .btn {
     padding: 0.5em 1em;
+    gap: 0.2em;
     color: var(--textColor);
+    cursor: pointer;
   }
 
   main {
@@ -70,63 +81,150 @@
 
   form,
   .advancedCont {
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-  }
-
-  /* TODO: find better solution and delete: */
-  input {
-    width: 300px;
+    font-size: 1.2rem;
   }
 
   .adVariantPicker {
+    margin-bottom: var(--formGap);
     width: fit-content;
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
+    border-radius: var(--infinity);
+
+    &:has(input[name="adVariant"]:focus-visible) {
+      outline: medium solid var(--accentColor);
+    }
   }
 
-  input[name="adVariant"] {
-    display: none;
+  .adVariantLabel {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: oklch(from var(--textColor) 80% c h);
+    font-weight: 700;
+    text-align: center;
+    border: 2px solid var(--accentColor);
+    background-color: transparent;
+    transition: all 0.15s ease-out;
 
-    & + label {
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      color: oklch(from var(--textColor) 80% c h);
-      font-size: 1rem;
-      font-weight: 700;
-      text-align: center;
-      cursor: pointer;
-      border: 2px solid var(--accentColor);
-      background-color: transparent;
-      transition: all 0.15s ease-out;
-
-      &:first-of-type {
-        border-right: none;
-        border-radius: var(--infinity) 0 0 var(--infinity);
-      }
-      &:last-of-type {
-        border-left: none;
-        border-radius: 0 var(--infinity) var(--infinity) 0;
-      }
-
-      &:is(:hover, :focus-visible) {
-        background-color: oklch(from var(--accentColor) 20% c h);
-      }
+    &:first-of-type {
+      border-right: none;
+      border-radius: var(--infinity) 0 0 var(--infinity);
+    }
+    &:last-of-type {
+      border-left: none;
+      border-radius: 0 var(--infinity) var(--infinity) 0;
     }
 
-    &:checked + label {
+    &:hover {
+      background-color: oklch(from var(--accentColor) 20% c h);
+    }
+
+    &:has(+ input[name="adVariant"]:checked) {
       color: var(--textColor);
       background-color: var(--accentColor);
     }
   }
 
+  input[name="adVariant"] {
+    position: absolute;
+    height: 0;
+    opacity: 0;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  .trenner {
+    margin-bottom: var(--formGap);
+    width: 80%;
+    height: 2px;
+    background: linear-gradient(to right, transparent 0%, var(--accentColor) 15%, var(--accentColor) 85%, transparent 100%);
+
+    &.dezent {
+      height: 1px;
+      width: 65%;
+      opacity: 0.5;
+    }
+  }
+
+  .fileUploadLabel {
+    margin-bottom: var(--formGap);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--textColor);
+    border-radius: 8px;
+    background-color: transparent;
+    transition: all 0.15s ease-out;
+
+    &:is(:hover, :has(+ input[type="file"]:focus-visible)) {
+      background-color: var(--hoverColor);
+    }
+
+    &:has(+ input[type="file"]:focus-visible) {
+      outline: medium solid var(--accentColor);
+    }
+  }
+  input[type="file"] {
+    height: 0;
+    position: absolute;
+    opacity: 0;
+
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  .textInputWithLabelCont {
+    margin-bottom: var(--formGap);
+    width: var(--inputWidth);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+  }
+
+  label:has(+ input[type="text"]) {
+    padding: 0 calc(1lh - 0.5cap) 0 0.33em;
+    position: relative;
+    color: var(--bgColor);
+    border-radius: 4px 0 0 0;
+    background-color: var(--textColor);
+    clip-path: polygon(0 0, calc(100% - 1lh) 0, 100% calc(100% + 1px), 0 calc(100% + 1px)); /* +1px cause of fringing */
+    transition: all 0.15s ease-out;
+  }
+  label:has(+ input[type="text"]:is(:hover, :focus-visible)) {
+    color: var(--hoverColor);
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 0.33em 0.5em;
+    border: 2px solid var(--textColor);
+    border-radius: 0 8px 8px 8px;
+    background-color: transparent;
+    isolation: isolate;
+    transition: all 0.15s ease-out;
+
+    &:is(:hover, :focus-visible) {
+      background-color: var(--hoverColor);
+    }
+    &:focus-visible {
+      outline: medium solid var(--accentColor);
+    }
+  }
+
   .toggleCont {
+    margin-bottom: var(--formGap);
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -138,12 +236,19 @@
   }
 
   .advancedBtn {
+    margin-bottom: var(--formGap);
+    padding: 0 0.33em;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    border-bottom: 2px solid transparent;
     background: none;
-    cursor: pointer;
+    transition: all 0.15s ease-out;
+
+    &:is(:hover, :focus-visible) {
+      border-bottom: 2px solid var(--accentColor);
+    }
 
     & svg {
       rotate: x 0;
@@ -165,18 +270,76 @@
     }
   }
 
+  .colorPickerGroup {
+    margin-bottom: var(--formGap);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "colorPickerImg accentColor"
+      "colorPickerImg textColor"
+      "colorPickerImg bgColor";
+    gap: 0 var(--formGap);
+  }
+
+  .colorPickerImg {
+    grid-area: colorPickerImg;
+    max-width: 100%;
+    max-height: 500px;
+  }
+
+  .colorInputWithLabelCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5em;
+
+    &:nth-of-type(1) {
+      grid-area: accentColor;
+    }
+    &:nth-of-type(2) {
+      grid-area: textColor;
+    }
+    &:nth-of-type(3) {
+      grid-area: bgColor;
+    }
+  }
+
+  input[type="color"] {
+    width: 1lh;
+    height: 1lh;
+    cursor: pointer;
+    transition: all 0.15s ease-out;
+
+    &:focus-visible {
+      outline: medium solid var(--accentColor);
+    }
+
+    &::-webkit-color-swatch-wrapper {
+      padding: 0;
+      border: 2px solid var(--textColor);
+    }
+
+    &::-webkit-color-swatch {
+      border: none;
+    }
+  }
+
   /**********************************/
   /* OUTPUT (RIGHT SIDE ON DESKTOP) */
 
   .outputSection {
     grid-area: output;
+    position: sticky;
+    top: 2rem;
   }
 
   .outputBtnsCont {
+    width: 100%;
     display: flex;
     flex-direction: row;
     align-items: end;
-    justify-content: center;
+    justify-content: start;
     gap: 0.5em;
   }
 
@@ -190,7 +353,10 @@
   }
 
   .copyOutputBtn {
-    font-size: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
   }
 
   .output {
