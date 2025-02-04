@@ -272,6 +272,7 @@
 
   .colorPickerGroup {
     margin-bottom: var(--formGap);
+    min-height: 5lh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr 1fr;
