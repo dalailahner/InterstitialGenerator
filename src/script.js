@@ -1,6 +1,6 @@
-console.clear();
-
-console.log("Hello!");
+//---------
+// GLOBALS
+const form = document.querySelector("form");
 
 // advanced tab
 document.querySelector(".advancedBtn").addEventListener("click", (ev) => {
@@ -8,14 +8,44 @@ document.querySelector(".advancedBtn").addEventListener("click", (ev) => {
 });
 
 // form submit
-const form = document.querySelector("form");
+form.addEventListener("submit", (ev) => formSubmit(ev));
 
-form.addEventListener("submit", (ev) => {
-  ev.preventDefault();
-  const formData = new FormData(form);
-  let output = "";
-  for (const entry of formData) {
-    output = `${output}${entry[0]} = ${entry[1]}\r`;
+// input change
+for (const el of form.querySelectorAll("input")) {
+  el.addEventListener("change", (ev) => formSubmit(ev));
+}
+
+//-----------
+// FUNCTIONS
+
+function formSubmit(event) {
+  event.preventDefault();
+  const formDataRaw = new FormData(form);
+  const formData = Object.fromEntries(formDataRaw.entries());
+
+  switch (formData.adVariant) {
+    case "adVariantHTML":
+      for (const el of document.querySelectorAll(".htmlOnly")) {
+        el.style.display = "";
+      }
+      for (const el of document.querySelectorAll(".imgOnly")) {
+        el.style.display = "none";
+      }
+      break;
+
+    case "adVariantImg":
+      for (const el of document.querySelectorAll(".imgOnly")) {
+        el.style.display = "";
+      }
+      for (const el of document.querySelectorAll(".htmlOnly")) {
+        el.style.display = "none";
+      }
+      break;
+
+    default:
+      break;
   }
-  console.log(output);
-});
+
+  // log form data:
+  console.log(formData);
+}

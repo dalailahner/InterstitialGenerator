@@ -25,13 +25,13 @@
           <label class="btn fileUploadLabel" for="imgUpload">Bild hochladen<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M480-480ZM200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h320v80H200v560h560v-320h80v320q0 33-23.5 56.5T760-120H200Zm40-160h480L570-480 450-320l-90-120-120 160Zm440-320v-80h-80v-80h80v-80h80v80h80v80h-80v80h-80Z"/></svg></label>
           <input type="file" id="imgUpload" name="imgUpload" />
           <hr class="trenner dezent" />
-          <div class="textInputWithLabelCont">
+          <div class="textInputWithLabelCont htmlOnly" style="display: none">
             <label for="headline">Headline</label>
-            <input type="text" id="headline" name="headline" />
+            <input id="headline" name="headline" type="text" />
           </div>
-          <div class="textInputWithLabelCont">
+          <div class="textInputWithLabelCont htmlOnly" style="display: none">
             <label for="subline">Subline</label>
-            <input type="text" id="subline" name="subline" />
+            <input id="subline" name="subline" type="text" />
           </div>
           <div class="textInputWithLabelCont">
             <label for="ctaText">CTA-Text</label>
@@ -47,13 +47,13 @@
           <button class="btn advancedBtn" type="button">Advanced<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z" /></svg></button>
           <div class="advancedCont">
             <hr class="trenner dezent" />
-            <div class="toggleCont">
+            <div class="toggleCont imgOnly">
               <p class="toggleLabel">3D Image</p>
               <label class="noicssToggle"><input type="checkbox" name="3D" checked /></label>
             </div>
-            <hr class="trenner dezent" />
+            <hr class="trenner dezent imgOnly" />
             <div class="colorPickerGroup">
-              <img class="colorPickerImg" src="#" />
+              <img class="colorPickerImg" src="" />
               <div class="colorInputWithLabelCont">
                 <label for="accentColor">Accent Color</label>
                 <input type="color" id="accentColor" name="accentColor" />
