@@ -51,7 +51,7 @@ function formSubmit(event) {
   // img upload
   if (formData.imgUpload) {
     const colorPickerImg = document.querySelector(".colorPickerImg");
-    if (colorPickerImg) {
+    if (colorPickerImg && formData.imgUpload.size > 0) {
       colorPickerImg.src = URL.createObjectURL(formData.imgUpload);
     }
   }
