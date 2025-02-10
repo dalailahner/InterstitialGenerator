@@ -23,6 +23,7 @@ function formSubmit(event) {
   const formDataRaw = new FormData(form);
   const formData = Object.fromEntries(formDataRaw.entries());
 
+  // img vs. html toggle
   switch (formData.adVariant) {
     case "adVariantHTML":
       for (const el of document.querySelectorAll(".htmlOnly")) {
@@ -46,6 +47,13 @@ function formSubmit(event) {
       break;
   }
 
+  // img upload
+  if (formData.imgUpload) {
+    const colorPickerImg = document.querySelector(".colorPickerImg");
+    if (colorPickerImg) {
+      colorPickerImg.src = URL.createObjectURL(formData.imgUpload);
+    }
+  }
   // log form data:
   console.log(formData);
 }
