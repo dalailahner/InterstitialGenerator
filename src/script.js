@@ -1,6 +1,7 @@
 //---------
 // GLOBALS
 const form = document.querySelector("form");
+let notificationTimeout;
 
 // advanced tab
 document.querySelector(".advancedBtn").addEventListener("click", (ev) => {
@@ -54,6 +55,17 @@ function formSubmit(event) {
       colorPickerImg.src = URL.createObjectURL(formData.imgUpload);
     }
   }
+
+  // "updated" notification
+  const updateNotification = document.querySelector(".updateNotification");
+  if (updateNotification) {
+    updateNotification.classList.add("visible");
+    clearTimeout(notificationTimeout);
+    notificationTimeout = setTimeout(() => {
+      updateNotification.classList.remove("visible");
+    }, 1200);
+  }
+
   // log form data:
   console.log(formData);
 }

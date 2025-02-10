@@ -351,6 +351,12 @@
     justify-content: center;
     color: green;
     background-color: oklch(from currentColor 0.8 c h);
+    translate: 0 100%;
+    transition: all 0.15s ease-in-out;
+
+    &.visible {
+      translate: 0 0;
+    }
   }
 
   .copyOutputBtn {
