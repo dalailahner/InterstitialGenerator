@@ -1,3 +1,6 @@
+import imgInterstitial from "./modules/imgInterstitial";
+import htmlInterstitial from "./modules/htmlInterstitial";
+
 //---------
 // GLOBALS
 const form = document.querySelector("form");
@@ -23,6 +26,7 @@ function formSubmit(event) {
   event.preventDefault();
   const formDataRaw = new FormData(form);
   const formData = Object.fromEntries(formDataRaw.entries());
+  const outputEl = document.querySelector(".output code");
 
   // img vs. html toggle
   switch (formData.adVariant) {
@@ -33,6 +37,7 @@ function formSubmit(event) {
       for (const el of document.querySelectorAll(".imgOnly")) {
         el.style.display = "none";
       }
+      outputEl.innerText = htmlInterstitial.getCode(formData);
       break;
 
     case "adVariantImg":
@@ -42,6 +47,7 @@ function formSubmit(event) {
       for (const el of document.querySelectorAll(".htmlOnly")) {
         el.style.display = "none";
       }
+      outputEl.innerText = imgInterstitial.getCode(formData);
       break;
 
     default:
