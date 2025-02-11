@@ -372,7 +372,7 @@ const htmlInterstitial = {
         <img class="image" src="${formData?.imgUpload.name.length > 0 ? "formData.imgUpload.name" : "image.jpg"}" alt="" />
       </div>
       <div class="textCont">
-        <h1 class="${formData?.headline.length > 0 ? formData.headline : "Headline"}</h1>
+        <h1 class="headline">${formData?.headline.length > 0 ? formData.headline : "Headline"}</h1>
         <p class="subline">${formData?.subline.length > 0 ? formData.subline : "Subline"}</p>
         <a class="btn" href="%clickurl:u%" target="_blank">${formData?.ctaText.length > 0 ? formData.ctaText : "mehr Infos"}</a>
       </div>
