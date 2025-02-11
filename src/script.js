@@ -1,10 +1,19 @@
 import imgInterstitial from "./modules/imgInterstitial";
 import htmlInterstitial from "./modules/htmlInterstitial";
+import hljs from "highlight.js/lib/core";
+import xml from "highlight.js/lib/languages/xml";
+import css from "highlight.js/lib/languages/css";
+import "highlight.js/styles/base16/gruvbox-dark-hard.css";
 
 //---------
 // GLOBALS
 const form = document.querySelector("form");
 let notificationTimeout;
+
+//-------
+// SETUP
+hljs.registerLanguage("xml", xml);
+hljs.registerLanguage("css", css);
 
 // advanced tab
 document.querySelector(".advancedBtn").addEventListener("click", (ev) => {
@@ -30,25 +39,35 @@ function formSubmit(event) {
 
   // img vs. html toggle
   switch (formData.adVariant) {
-    case "adVariantHTML":
+    case "adVariantHTML": {
       for (const el of document.querySelectorAll(".htmlOnly")) {
         el.style.display = "";
       }
       for (const el of document.querySelectorAll(".imgOnly")) {
         el.style.display = "none";
       }
-      outputEl.innerText = htmlInterstitial.getCode(formData);
-      break;
 
-    case "adVariantImg":
+      const escapedCode = document.createTextNode(htmlInterstitial.getCode(formData)).wholeText;
+      const highlightedCode = hljs.highlight(escapedCode, { language: "xml" }).value;
+      outputEl.innerHTML = highlightedCode;
+
+      break;
+    }
+
+    case "adVariantImg": {
       for (const el of document.querySelectorAll(".imgOnly")) {
         el.style.display = "";
       }
       for (const el of document.querySelectorAll(".htmlOnly")) {
         el.style.display = "none";
       }
-      outputEl.innerText = imgInterstitial.getCode(formData);
+
+      const escapedCode = document.createTextNode(imgInterstitial.getCode(formData)).wholeText;
+      const highlightedCode = hljs.highlight(escapedCode, { language: "xml" }).value;
+      outputEl.innerHTML = highlightedCode;
+
       break;
+    }
 
     default:
       break;
