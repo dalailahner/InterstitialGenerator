@@ -369,6 +369,7 @@
   }
 
   .output {
+    margin-bottom: var(--formGap);
     padding: 1em;
     width: 100cqw;
     max-height: 25cap;
@@ -378,5 +379,14 @@
     background-color: oklch(from var(--bgColor) calc(l + 0.15) c h);
     z-index: 1;
     overflow: auto;
+  }
+
+  .preview {
+    margin-bottom: var(--formGap);
+    width: 390px;
+    height: 844px;
+    border: 12px solid oklch(from var(--bgColor) calc(l + 0.15) c h);
+    border-radius: 8px;
+    background-color: #fff;
   }
 }

@@ -1,6 +1,26 @@
 const htmlInterstitial = {
-  getCode(formData) {
-    console.log("--- output HTML module ---");
+  getCode(formData, mode = "output") {
+    let imgSrc;
+    let clickurl;
+    let truecount;
+
+    switch (mode) {
+      case "output":
+        imgSrc = formData?.imgUpload.name.length > 0 ? formData.imgUpload.name : "image.jpg";
+        clickurl = true;
+        truecount = formData?.truecount;
+        break;
+
+      case "preview":
+        imgSrc = formData?.imgUpload.size > 0 ? URL.createObjectURL(formData.imgUpload) : "";
+        clickurl = false;
+        truecount = false;
+        break;
+
+      default:
+        break;
+    }
+
     const outputTxt = `<!DOCTYPE html>
 <html lang="de">
   <head>
@@ -369,15 +389,15 @@ const htmlInterstitial = {
     <div class="mainCont">
       <p class="label">Anzeige</p>
       <div class="imageCont">
-        <img class="image" src="${formData?.imgUpload.name.length > 0 ? "formData.imgUpload.name" : "image.jpg"}" alt="" />
+        <img class="image" src="${imgSrc}" alt="" />
       </div>
       <div class="textCont">
         <h1 class="headline">${formData?.headline.length > 0 ? formData.headline : "Headline"}</h1>
         <p class="subline">${formData?.subline.length > 0 ? formData.subline : "Subline"}</p>
-        <a class="btn" href="%clickurl:u%" target="_blank">${formData?.ctaText.length > 0 ? formData.ctaText : "mehr Infos"}</a>
+        <a class="btn" href="${clickurl ? "%clickurl:u%" : "#"}" target="_blank">${formData?.ctaText.length > 0 ? formData.ctaText : "mehr Infos"}</a>
       </div>
     </div>
-    ${formData?.truecount ? '<img src="%truecount%" style="width: 1px; height: 1px; position: fixed; top: 0" />' : ""}
+    ${truecount ? '<img src="%truecount%" style="width: 1px; height: 1px; position: fixed; top: 0" />' : ""}
   </body>
 </html>
 `;

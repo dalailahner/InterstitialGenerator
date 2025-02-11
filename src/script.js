@@ -35,11 +35,12 @@ function formSubmit(event) {
   event.preventDefault();
   const formDataRaw = new FormData(form);
   const formData = Object.fromEntries(formDataRaw.entries());
-  const outputEl = document.querySelector(".output code");
+  let unescapedCode = "";
+  let previewCode = "";
 
   // img vs. html toggle
   switch (formData.adVariant) {
-    case "adVariantHTML": {
+    case "adVariantHTML":
       for (const el of document.querySelectorAll(".htmlOnly")) {
         el.style.display = "";
       }
@@ -47,14 +48,13 @@ function formSubmit(event) {
         el.style.display = "none";
       }
 
-      const escapedCode = document.createTextNode(htmlInterstitial.getCode(formData)).wholeText;
-      const highlightedCode = hljs.highlight(escapedCode, { language: "xml" }).value;
-      outputEl.innerHTML = highlightedCode;
+      unescapedCode = htmlInterstitial.getCode(formData, "output");
+
+      previewCode = htmlInterstitial.getCode(formData, "preview");
 
       break;
-    }
 
-    case "adVariantImg": {
+    case "adVariantImg":
       for (const el of document.querySelectorAll(".imgOnly")) {
         el.style.display = "";
       }
@@ -62,12 +62,11 @@ function formSubmit(event) {
         el.style.display = "none";
       }
 
-      const escapedCode = document.createTextNode(imgInterstitial.getCode(formData)).wholeText;
-      const highlightedCode = hljs.highlight(escapedCode, { language: "xml" }).value;
-      outputEl.innerHTML = highlightedCode;
+      unescapedCode = imgInterstitial.getCode(formData, "output");
+
+      previewCode = imgInterstitial.getCode(formData, "preview");
 
       break;
-    }
 
     default:
       break;
@@ -80,6 +79,20 @@ function formSubmit(event) {
       colorPickerImg.src = URL.createObjectURL(formData.imgUpload);
     }
   }
+
+  // output syntax + highlighting
+  const outputEl = document.querySelector(".output code");
+  const escapedCode = document.createTextNode(unescapedCode).wholeText;
+  const highlightedCode = hljs.highlight(escapedCode, { language: "xml" }).value;
+  outputEl.innerHTML = highlightedCode;
+
+  // ad preview
+  const previewIframe = document.querySelector(".preview");
+  if (previewIframe) {
+    previewIframe.srcdoc = previewCode;
+  }
+
+  // TODO: copy btn
 
   // "updated" notification
   const updateNotification = document.querySelector(".updateNotification");
