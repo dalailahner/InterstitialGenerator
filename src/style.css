@@ -266,7 +266,10 @@
     transition: all 0.25s ease-out;
 
     &.open {
-      height: calc-size(auto, size);
+      height: fit-content;
+      @supports (height: calc-size(auto, size)) {
+        height: calc-size(auto, size);
+      }
     }
   }
 
@@ -366,6 +369,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: oklch(from var(--bgColor) calc(l + 0.25) c h);
   }
 
   .output {
