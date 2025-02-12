@@ -334,8 +334,6 @@
 
   .outputSection {
     grid-area: output;
-    position: sticky;
-    top: 2rem;
     container-name: output;
     container-type: inline-size;
   }
