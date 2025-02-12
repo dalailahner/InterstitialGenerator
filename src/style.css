@@ -25,6 +25,7 @@
   }
 
   body {
+    color: var(--textColor);
     font-family: Inter, "Gill Sans", "Gill Sans MT", Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
     background-color: var(--bgColor);
   }
