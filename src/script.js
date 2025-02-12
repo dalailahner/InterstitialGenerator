@@ -9,23 +9,43 @@ import "highlight.js/styles/base16/gruvbox-dark-hard.css";
 // GLOBALS
 const form = document.querySelector("form");
 let notificationTimeout;
+let unescapedCode = "";
+let clickedCopyTimeout;
 
 //-------
 // SETUP
 hljs.registerLanguage("xml", xml);
 hljs.registerLanguage("css", css);
 
+//--------
+// EVENTS
+
 // advanced tab
 document.querySelector(".advancedBtn").addEventListener("click", (ev) => {
   document.querySelector(".advancedCont").classList.toggle("open");
 });
 
-// form submit
+// custom form submit
 form.addEventListener("submit", (ev) => formSubmit(ev));
 
 // input change
 for (const el of form.querySelectorAll("input")) {
   el.addEventListener("change", (ev) => formSubmit(ev));
+}
+
+// copy btn
+const copyOutputBtn = document.querySelector(".copyOutputBtn");
+if (copyOutputBtn) {
+  copyOutputBtn.addEventListener("click", (ev) => {
+    // copy to clipboard
+    writeTextToClipboard(unescapedCode);
+    // show checkmark
+    copyOutputBtn.classList.add("clicked");
+    clearTimeout(clickedCopyTimeout);
+    clickedCopyTimeout = setTimeout(() => {
+      copyOutputBtn.classList.remove("clicked");
+    }, 1200);
+  });
 }
 
 //-----------
@@ -35,7 +55,6 @@ function formSubmit(event) {
   event.preventDefault();
   const formDataRaw = new FormData(form);
   const formData = Object.fromEntries(formDataRaw.entries());
-  let unescapedCode = "";
   let previewCode = "";
 
   // img vs. html toggle
@@ -92,8 +111,6 @@ function formSubmit(event) {
     previewIframe.srcdoc = previewCode;
   }
 
-  // TODO: copy btn
-
   // "updated" notification
   const updateNotification = document.querySelector(".updateNotification");
   if (updateNotification) {
@@ -105,5 +122,14 @@ function formSubmit(event) {
   }
 
   // log form data:
-  console.log(formData);
+  console.log("Form Data: \n", formData);
+}
+
+async function writeTextToClipboard(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.warn("couldn't write text to clipboard");
+    console.error(error.message);
+  }
 }

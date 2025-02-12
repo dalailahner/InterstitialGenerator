@@ -370,6 +370,26 @@
     align-items: center;
     justify-content: center;
     background-color: oklch(from var(--bgColor) calc(l + 0.25) c h);
+
+    & svg {
+      &:first-child {
+        display: unset;
+      }
+      &:last-child {
+        display: none;
+      }
+    }
+
+    &.clicked {
+      & svg {
+        &:first-child {
+          display: none;
+        }
+        &:last-child {
+          display: unset;
+        }
+      }
+    }
   }
 
   .output {
