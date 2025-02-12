@@ -310,7 +310,7 @@ const imgInterstitial = {
           padding: 0.5em 1em;
           color: var(--bgColor);
           font-weight: 900;
-          font-size: clamp(1.1rem, 4vw, 1.6rem);
+          font-size: clamp(1.1rem, 4vmin, 1.6rem);
           letter-spacing: 0.5px;
           line-height: 1;
           text-align: center;

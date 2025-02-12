@@ -294,7 +294,7 @@ const htmlInterstitial = {
           color: inherit;
           font-family: inherit;
           font-weight: 700;
-          font-size: clamp(1.5rem, 8vw, 3rem);
+          font-size: clamp(1.5rem, 8vmin, 3rem);
           transform-origin: 0% 50%;
           animation: textFadeIn 0.5s cubic-bezier(0, 0.55, 0.45, 1) 0.25s 1 normal both;
         }
@@ -302,7 +302,7 @@ const htmlInterstitial = {
           color: inherit;
           font-family: inherit;
           font-weight: 400;
-          font-size: clamp(1rem, 4vw, 2rem);
+          font-size: clamp(1rem, 4vmin, 2rem);
           transform-origin: 0% 50%;
           animation: textFadeIn 0.5s cubic-bezier(0, 0.55, 0.45, 1) 0.5s 1 normal both;
         }
@@ -310,7 +310,7 @@ const htmlInterstitial = {
           padding: 0.5em 1em;
           color: var(--bgColor);
           font-weight: 900;
-          font-size: clamp(1.1rem, 4vw, 1.6rem);
+          font-size: clamp(1.1rem, 4vmin, 1.6rem);
           letter-spacing: 0.5px;
           line-height: 1;
           text-align: center;
