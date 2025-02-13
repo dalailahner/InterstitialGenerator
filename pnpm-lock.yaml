@@ -12,8 +12,8 @@ importers:
         specifier: ^11.11.1
         version: 11.11.1
       noicss.reset:
-        specifier: ^1.8.0
-        version: 1.8.0
+        specifier: ^1.8.1
+        version: 1.8.1
       noicss.toggle:
         specifier: ^1.0.2
         version: 1.0.2
@@ -384,8 +384,8 @@ packages:
   node-releases@2.0.19:
     resolution: {integrity: sha512-xxOWJsBKtzAq7DY0J+DTzuz58K8e7sJbdgwkbMWQe8UYB6ekmsQ45q0M/tJDsGaZmbC+l7n57UV8Hl5tHxO9uw==}
 
-  noicss.reset@1.8.0:
-    resolution: {integrity: sha512-PSSydzU/DvoAcsgwIQiOl3SNCrsa1wGb8GBgSwyzhKfbwysWNfICnEVImeOF8asMrp9vO0B6aR7LtZ7oTAfYsg==}
+  noicss.reset@1.8.1:
+    resolution: {integrity: sha512-Vkbrj0Y4UiMHnjaHaN0py48pGz8oEDnFfjQZlz+CgRUPSwFj4Pp+ioeyKECm7ssbQu0rulwTsI8UvAcrWjvGVQ==}
 
   noicss.toggle@1.0.2:
     resolution: {integrity: sha512-FxztF4FsXJh3bb5rGZzwy1WWYwsNPX5eT0YqmE2SHi8P7UNRR5PcXgVGqigrbzjdzlhzZrGUNhgeAXUdunfDAA==}
@@ -685,7 +685,7 @@ snapshots:
 
   node-releases@2.0.19: {}
 
-  noicss.reset@1.8.0: {}
+  noicss.reset@1.8.1: {}
 
   noicss.toggle@1.0.2: {}
 
