@@ -15,7 +15,7 @@
           <div class="adVariantPicker">
             <!-- prettier-ignore -->
             <label class="btn adVariantLabel" for="adVariantImg">IMG<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H200Zm0-80h560v-560H200v560Zm40-80h480L570-480 450-320l-90-120-120 160Zm-40 80v-560 560Zm140-360q25 0 42.5-17.5T400-620q0-25-17.5-42.5T340-680q-25 0-42.5 17.5T280-620q0 25 17.5 42.5T340-560Z"/></svg></label>
-            <input type="radio" id="adVariantImg" name="adVariant" value="adVariantImg" checked />
+            <input type="radio" id="adVariantImg" name="adVariant" value="adVariantImg" autofocus checked />
             <!-- prettier-ignore -->
             <label class="btn adVariantLabel" for="adVariantHTML">HTML<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="var(--textColor)" viewBox="0 -960 960 960"><path d="M336-240 96-480l240-240 51 51-189 189 189 189-51 51Zm288 0-51-51 189-189-189-189 51-51 240 240-240 240Z"/></svg></label>
             <input type="radio" id="adVariantHTML" name="adVariant" value="adVariantHTML" />
@@ -27,15 +27,15 @@
           <hr class="trenner dezent" />
           <div class="textInputWithLabelCont htmlOnly" style="display: none">
             <label for="headline">Headline</label>
-            <input id="headline" name="headline" type="text" />
+            <input id="headline" name="headline" type="text" maxlength="50" />
           </div>
           <div class="textInputWithLabelCont htmlOnly" style="display: none">
             <label for="subline">Subline</label>
-            <input id="subline" name="subline" type="text" />
+            <input id="subline" name="subline" type="text" maxlength="120" />
           </div>
           <div class="textInputWithLabelCont">
             <label for="ctaText">CTA-Text</label>
-            <input type="text" id="ctaText" name="ctaText" />
+            <input type="text" id="ctaText" name="ctaText" maxlength="20" />
           </div>
           <hr class="trenner dezent" />
           <div class="toggleCont">
