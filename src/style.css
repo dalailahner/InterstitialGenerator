@@ -5,7 +5,6 @@
 
 @layer main {
   :root {
-    scrollbar-gutter: stable both-edges;
     --accentColor: #d12800;
     --textColor: #f5f5f5;
     --bgColor: #232323;
@@ -13,10 +12,11 @@
     --infinity: calc(infinity * 1px);
     --formGap: 2rem;
     --inputWidth: max(50%, 300px);
-
     --noicssToggleWidth: 2.5rem;
     --noicssToggleHeight: 1.5rem;
     --noicssToggleOutline: var(--accentColor);
+
+    scrollbar-gutter: stable both-edges;
   }
 
   * {
@@ -40,23 +40,12 @@
   main {
     padding: 0 1rem;
     display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 8rem auto auto 5rem;
-    grid-template-areas:
-      "headline"
-      "input"
-      "output"
-      ".";
-    gap: 5rem;
+    grid-template: "headline" 8rem "input" auto "output" auto "." 5rem / 100%;
     place-items: start center;
+    gap: 5rem;
 
     @media screen and (width > 768px) {
-      grid-template-columns: 3fr 2fr;
-      grid-template-rows: 8rem auto 5rem;
-      grid-template-areas:
-        "headline ."
-        "input output"
-        ". .";
+      grid-template: "headline ." 8rem "input output" auto ". ." 5rem / 3fr 2fr;
       gap: 0;
     }
   }
@@ -135,8 +124,8 @@
   }
 
   input[name="adVariant"] {
-    position: absolute;
     height: 0;
+    position: absolute;
     opacity: 0;
 
     &:focus-visible {
@@ -151,8 +140,8 @@
     background: linear-gradient(to right, transparent 0%, var(--accentColor) 15%, var(--accentColor) 85%, transparent 100%);
 
     &.dezent {
-      height: 1px;
       width: 65%;
+      height: 1px;
       opacity: 0.5;
     }
   }
@@ -198,7 +187,7 @@
     padding: 0 calc(1lh - 0.5cap) 0 0.33em;
     position: relative;
     color: var(--bgColor);
-    border-radius: 4px 0 0 0;
+    border-radius: 4px 0 0;
     background-color: var(--textColor);
     clip-path: polygon(0 0, calc(100% - 1lh) 0, 100% calc(100% + 1px), 0 calc(100% + 1px)); /* +1px cause of fringing */
     transition: all 0.15s ease-out;
@@ -208,13 +197,13 @@
   }
 
   input[type="text"] {
-    width: 100%;
     padding: 0.33em 0.5em;
+    width: 100%;
     border: 2px solid var(--textColor);
-    border-radius: 0 8px 8px 8px;
+    border-radius: 0 8px 8px;
     background-color: transparent;
-    isolation: isolate;
     transition: all 0.15s ease-out;
+    isolation: isolate;
 
     &:is(:hover, :focus-visible) {
       background-color: var(--hoverColor);
@@ -229,8 +218,8 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 0.5em;
     place-items: center start;
+    gap: 0.5em;
   }
   .toggleLabel {
     justify-self: end;
@@ -252,7 +241,7 @@
     }
 
     & svg {
-      rotate: x 0;
+      rotate: x 0deg;
       transition: 0.25s ease-out;
     }
 
@@ -278,19 +267,14 @@
     margin-bottom: var(--formGap);
     min-height: 5lh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-template-areas:
-      "colorPickerImg accentColor"
-      "colorPickerImg textColor"
-      "colorPickerImg bgColor";
+    grid-template: "colorPickerImg accentColor" 1fr "colorPickerImg textColor" 1fr "colorPickerImg bgColor" 1fr / 1fr 1fr;
     gap: 0 var(--formGap);
   }
 
   .colorPickerImg {
-    grid-area: colorPickerImg;
     max-width: 100%;
     max-height: 500px;
+    grid-area: colorPickerImg;
   }
 
   .colorInputWithLabelCont {
@@ -330,7 +314,7 @@
     }
   }
 
-  /**********************************/
+  /*********************************  */
   /* OUTPUT (RIGHT SIDE ON DESKTOP) */
 
   .outputSection {
@@ -353,8 +337,8 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    color: green;
-    background-color: oklch(from currentColor 0.8 c h);
+    color: #080;
+    background-color: oklch(from currentColor 80% c h);
     translate: 0 100%;
     transition: all 0.15s ease-in-out;
 
@@ -400,8 +384,8 @@
     font-family: Hack, "Courier New", Courier, monospace;
     font-size: 0.875rem;
     background-color: oklch(from var(--bgColor) calc(l + 0.15) c h);
-    z-index: 1;
     overflow: auto;
+    z-index: 1;
   }
 
   .preview {

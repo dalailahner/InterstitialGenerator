@@ -1,9 +1,9 @@
-import imgInterstitial from "./modules/imgInterstitial";
-import htmlInterstitial from "./modules/htmlInterstitial";
-import hljs from "highlight.js/lib/core";
-import xml from "highlight.js/lib/languages/xml";
 import css from "highlight.js/lib/languages/css";
 import "highlight.js/styles/base16/gruvbox-dark-hard.css";
+import hljs from "highlight.js/lib/core";
+import xml from "highlight.js/lib/languages/xml";
+import htmlInterstitial from "./modules/htmlInterstitial";
+import imgInterstitial from "./modules/imgInterstitial";
 
 //---------
 // GLOBALS
@@ -20,23 +20,43 @@ hljs.registerLanguage("css", css);
 //--------
 // EVENTS
 
+// input events
+for (const el of form.querySelectorAll("input")) {
+  // on input
+  if (el?.dataset.maxlength) {
+    const maxlength = Number.parseInt(el.dataset.maxlength, 10);
+    if (Number.isInteger(maxlength)) {
+      el.addEventListener("input", () => {
+        const graphemes = new Intl.Segmenter("de", { granularity: "grapheme" }).segment(el.value);
+        const graphemesArr = Array.from(graphemes);
+        if (graphemesArr.length > maxlength) {
+          el.value = graphemesArr
+            .slice(0, maxlength)
+            .map((entry) => entry.segment)
+            .join("");
+        }
+      });
+    } else {
+      console.warn("DANGER! data-maxlength can't be parsed as an integer at element: ", el);
+    }
+  }
+
+  // on change
+  el.addEventListener("change", (ev) => formSubmit(ev));
+}
+
 // advanced tab
-document.querySelector(".advancedBtn").addEventListener("click", (ev) => {
+document.querySelector(".advancedBtn").addEventListener("click", () => {
   document.querySelector(".advancedCont").classList.toggle("open");
 });
 
 // custom form submit
 form.addEventListener("submit", (ev) => formSubmit(ev));
 
-// input change
-for (const el of form.querySelectorAll("input")) {
-  el.addEventListener("change", (ev) => formSubmit(ev));
-}
-
 // copy btn
 const copyOutputBtn = document.querySelector(".copyOutputBtn");
 if (copyOutputBtn) {
-  copyOutputBtn.addEventListener("click", (ev) => {
+  copyOutputBtn.addEventListener("click", () => {
     // copy to clipboard
     writeTextToClipboard(unescapedCode);
     // show checkmark
